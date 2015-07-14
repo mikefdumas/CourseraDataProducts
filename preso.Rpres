@@ -1,0 +1,41 @@
+Predicting MPG
+========================================================
+author: Mike 
+date: 7/14/2015
+
+The Objective
+========================================================
+
+Building a new car requires substantial investment and building a car with low miles per gallon could be catastrphic on the return. The shiny app shows uses a simple regression algorithm to predict miles per gallon using the following data elements. 
+
+- Tranmission Type
+- Weight
+- Number of Cylenders
+- Horsepower
+
+Regression Model Overview
+========================================================
+
+```{r echo=FALSE}
+final_fit = lm(formula = mpg ~ factor(am) + wt + factor(cyl) + hp, data = mtcars)
+summary(final_fit)
+```
+
+Regression Diagnostics
+========================================================
+
+```{r, echo=FALSE}
+plot(final_fit, 1)
+```
+
+Sample Prediction
+========================================================
+```{r}
+test_data = data.frame(am = 1, wt = 2, cyl = 6, hp = 220)
+mpg = predict(final_fit, test_data)
+mpg
+```
+
+Conclusion
+========================================================
+Our model provides ample evidence for using these features as an initial basis for determining miles per gallon. By furthering this model, car manufactures can better predict the miles per gallon of a new car before going into production and increase their return on investment. 
